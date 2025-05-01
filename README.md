@@ -38,3 +38,12 @@ Limpieza de errores y warnings:
 - Permite filtrarlos por nombre, ubicación y fecha.
 - Usa componentes reutilizables.
 - Presenta una interfaz amigable y clara.
+
+## 📊 Resumen Técnico
+
+| Elemento                  | Detalle                               |
+|---------------------------|---------------------------------------|
+| **Producto**              | EventEase                             |
+| **Versión**               | 1.0.0                                 |
+| **Tecnologías Clave**     | Blazor .NET 9, Bootstrap              |
+| **Navegadores**           | Chrome, Edge, Firefox, Safari         |

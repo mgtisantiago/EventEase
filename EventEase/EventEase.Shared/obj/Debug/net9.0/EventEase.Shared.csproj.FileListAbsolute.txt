@@ -1,0 +1,11 @@
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/bin/Debug/net9.0/EventEase.Shared.deps.json
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/bin/Debug/net9.0/EventEase.Shared.dll
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/bin/Debug/net9.0/EventEase.Shared.pdb
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.AssemblyInfoInputs.cache
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.AssemblyInfo.cs
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.csproj.CoreCompileInputs.cache
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.dll
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/refint/EventEase.Shared.dll
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/EventEase.Shared.pdb
+/Users/neitek-uxui/Downloads/EventEase/EventEase.Shared/obj/Debug/net9.0/ref/EventEase.Shared.dll

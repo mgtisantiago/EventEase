@@ -1,0 +1,15 @@
+@code {
+    [Parameter]
+    public int EventId { get; set; }
+    private int Attendees { get; set; } = 0;
+
+    private void TrackAttendance()
+    {
+        Attendees++;
+    }
+}
+
+<div>
+    <p>Asistentes: @Attendees</p>
+    <button @onclick="TrackAttendance">Marcar asistencia</button>
+</div>

@@ -1,0 +1,119 @@
+@page "/events"
+<PageTitle>Events</PageTitle>
+@using EventEase.Shared.Models
+@using EventEase.Client.Components
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
+
+<h3 class="mb-4">Lista de Eventos</h3>
+
+<div class="row mb-4">
+    <!-- Filtro por nombre -->
+    <div class="col-md-4">
+        <label class="form-label">Nombre del evento</label>
+        <InputText @bind-Value="filterName" class="form-control" placeholder="Buscar evento..." />
+    </div>
+
+    <!-- Filtro por ubicación (única) -->
+    <div class="col-md-4">
+        <label class="form-label">Ubicación</label>
+        <select class="form-select" @bind="selectedLocation">
+            <option value="">Todas</option>
+            @foreach (var loc in allLocations)
+            {
+                <option value="@loc">@loc</option>
+            }
+        </select>
+    </div>
+
+    <!-- Filtro por fecha -->
+    <div class="col-md-3">
+        <label class="form-label">Fecha</label>
+        <InputDate @bind-Value="filterDate" class="form-control" />
+    </div>
+
+    <!-- Botón buscar -->
+    <div class="col-md-1 d-flex align-items-end">
+        <button class="btn btn-outline-primary w-100" @onclick="ApplyFilters">Buscar</button>
+    </div>
+</div>
+
+@if (filteredEvents.Any())
+{
+    @foreach (var ev in filteredEvents)
+    {
+        <EventCard Event="@ev" />
+    }
+}
+else
+{
+    <div class="alert alert-warning">No se encontraron eventos con esos parámetros.</div>
+}
+
+@code {
+    private List<Event> allEvents = new();
+    private List<Event> filteredEvents = new();
+
+    private string filterName = string.Empty;
+    private DateTime? filterDate;
+    private string selectedLocation = string.Empty;
+
+    private List<string> allLocations = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var fetched = await Http.GetFromJsonAsync<List<Event>>("data/events.json");
+        if (fetched != null)
+        {
+            allEvents = fetched;
+            filteredEvents = allEvents;
+            allLocations = allEvents
+                .Select(e => e.Location)
+                .Distinct()
+                .OrderBy(l => l)
+                .ToList();
+        }
+    }
+
+    private void ApplyFilters()
+    {
+        filteredEvents = allEvents
+            .Where(ev =>
+                (string.IsNullOrWhiteSpace(filterName) || ev.Name.Contains(filterName, StringComparison.OrdinalIgnoreCase))
+                && (!filterDate.HasValue || ev.Date.Date == filterDate.Value.Date)
+                && (string.IsNullOrEmpty(selectedLocation) || ev.Location == selectedLocation)
+            )
+            .ToList();
+    }
+}
+
+
+
+
+
+
+
+@* @page "/events"
+@using EventEase.Shared.Models
+@using EventEase.Client.Components
+@inject HttpClient Http
+
+<h3 class="mb-4">Lista de Eventos</h3>
+
+    @foreach (var eventItem in events)
+    {
+        <EventCard Event="@eventItem" />
+    }
+
+@code {
+    private List<Event> events = new List<Event>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var fetchedEvents = await Http.GetFromJsonAsync<List<Event>>("data/events.json");
+        if (fetchedEvents != null)
+        {
+            events = fetchedEvents;
+        }
+    }
+} *@

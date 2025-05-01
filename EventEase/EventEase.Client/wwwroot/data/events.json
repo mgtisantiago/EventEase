@@ -1,0 +1,86 @@
+[
+  {
+    "Id": 1,
+    "Name": "Conferencia de Innovación",
+    "Date": "2025-05-05T09:00:00",
+    "Location": "Ciudad de México",
+    "Description": "Evento para presentar tendencias emergentes en tecnología e innovación."
+  },
+  {
+    "Id": 2,
+    "Name": "Taller de Desarrollo Web",
+    "Date": "2025-05-12T09:00:00",
+    "Location": "Guadalajara",
+    "Description": "Taller práctico de creación de sitios web modernos con HTML, CSS y JavaScript."
+  },
+  {
+    "Id": 3,
+    "Name": "Cumbre de Emprendedores",
+    "Date": "2025-05-15T10:00:00",
+    "Location": "Monterrey",
+    "Description": "Encuentro de startups y líderes de negocios para fomentar alianzas."
+  },
+  {
+    "Id": 4,
+    "Name": "Expo Tecnología y Futuro",
+    "Date": "2025-05-20T09:30:00",
+    "Location": "Querétaro",
+    "Description": "Exposición de productos tecnológicos innovadores y paneles de expertos."
+  },
+  {
+    "Id": 5,
+    "Name": "Seminario de Ciberseguridad",
+    "Date": "2025-05-22T14:00:00",
+    "Location": "Tijuana",
+    "Description": "Conferencias sobre seguridad digital y protección de datos."
+  },
+  {
+    "Id": 6,
+    "Name": "Hackathon Universitario",
+    "Date": "2025-05-25T08:00:00",
+    "Location": "León",
+    "Description": "Competencia de desarrollo de software entre estudiantes de TI."
+  },
+  {
+    "Id": 7,
+    "Name": "Feria de Inteligencia Artificial",
+    "Date": "2025-05-28T09:00:00",
+    "Location": "Puebla",
+    "Description": "Demostraciones de IA aplicada en diversos sectores industriales."
+  },
+  {
+    "Id": 8,
+    "Name": "Curso Intensivo de UX/UI",
+    "Date": "2025-06-01T10:00:00",
+    "Location": "Mérida",
+    "Description": "Curso teórico-práctico sobre diseño centrado en el usuario y experiencia digital."
+  },
+  {
+    "Id": 9,
+    "Name": "Networking para Startups",
+    "Date": "2025-06-03T18:00:00",
+    "Location": "Ciudad de México",
+    "Description": "Sesión de contactos para emprendedores e inversionistas."
+  },
+  {
+    "Id": 10,
+    "Name": "Bootcamp de Ciencia de Datos",
+    "Date": "2025-06-07T09:00:00",
+    "Location": "Toluca",
+    "Description": "Entrenamiento intensivo en análisis de datos con Python y herramientas de BI."   
+  },
+  {
+    "Id": 11,
+    "Name": "Jornada de Transformación Digital",
+    "Date": "2025-06-10T09:30:00",
+    "Location": "San Luis Potosí",
+    "Description": "Charlas y talleres para impulsar la digitalización en empresas."
+  },
+  {
+    "Id": 12,
+    "Name": "Simposio de Educación Tecnológica",
+    "Date": "2025-06-15T11:00:00",
+    "Location": "Aguascalientes",
+    "Description": "Simposio enfocado en el uso de tecnología para la educación del futuro."
+  }
+]

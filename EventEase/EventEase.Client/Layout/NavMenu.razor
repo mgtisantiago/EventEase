@@ -1,0 +1,75 @@
+﻿@using EventEase.Shared.Models
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<div class="top-row ps-3 navbar navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">EventEase</a>
+    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+  <nav class="nav flex-column">
+    <div class="nav-item px-3">
+      <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <span class="bi bi-house-door-fill-nav-menu"></span> Inicio
+      </NavLink>
+    </div>
+    <div class="nav-item px-3">
+      <NavLink class="nav-link" href="events">
+        <span class="bi bi-list-nested-nav-menu"></span> Eventos
+      </NavLink>
+    </div>
+
+    @if (isLoggedIn)
+    {
+      <div class="nav-item px-3">
+        <NavLink class="nav-link" @onclick="HandleLogout">
+          <span class="bi bi-person-circle"></span> Salir
+        </NavLink>
+      </div>
+    }
+    else
+    {
+      <div class="nav-item px-3">
+        <NavLink class="nav-link" href="login">
+          <span class="bi bi-person-circle"></span> Iniciar Sesión
+        </NavLink>
+      </div>
+    }
+  </nav>
+</div>
+
+@code {
+  private bool collapseNavMenu = true;
+  private bool isLoggedIn;
+
+  private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+  protected override void OnInitialized()
+  {
+    // Cada vez que cambie la ruta, llamamos a CheckLoginStatus
+    Navigation.LocationChanged += async (_, __) => await CheckLoginStatus();
+    // Comprobación inicial
+    _ = CheckLoginStatus(); 
+  }
+
+  private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
+
+  private async Task CheckLoginStatus()
+  {
+    var token = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "authToken");
+    isLoggedIn = !string.IsNullOrEmpty(token);
+    StateHasChanged();
+  }
+
+  private async Task HandleLogout()
+  {
+    await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "authToken");
+    isLoggedIn = false;
+    Navigation.NavigateTo("/", forceLoad: true);
+  }
+}

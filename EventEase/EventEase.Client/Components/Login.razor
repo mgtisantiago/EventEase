@@ -1,0 +1,65 @@
+@using EventEase.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+
+<div class="container mt-5">
+    <EditForm Model="@loginUser" OnValidSubmit="@HandleLoginSubmit">
+        <div class="row justify-content-center">
+            <div class="col-md-6 offset-md-3">
+                <h3 class="mb-4">Iniciar Sesión</h3>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                @if (loginFailed)
+                {
+                    <div class="alert alert-danger mt-3" role="alert">
+                        Usuario o contraseña incorrectos. Por favor, intente de nuevo.
+                    </div>
+                }
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <InputText id="email" type="email" class="form-control" @bind-Value="loginUser.Email" />
+                    @* <ValidationMessage For="@(() => loginUser.Email)" class="text-danger" /> *@
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <InputText id="password" type="password" class="form-control" @bind-Value="loginUser.Password" />
+                    @*  <ValidationMessage For="@(() => loginUser.Password)" class="text-danger" /> *@
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    private User loginUser = new User
+    {
+        Name = string.Empty,
+        Email = string.Empty,
+        Password = string.Empty
+    };
+    private bool loginFailed = false;
+    private async Task HandleLoginSubmit()
+    {
+        // Cargar los usuarios desde el archivo JSON
+        var users = await Http.GetFromJsonAsync<List<User>>("data/users.json");
+
+        // Verificar si el usuario y la contraseña coinciden
+        var user = users?.FirstOrDefault(u => u.Email == loginUser.Email && u.Password == loginUser.Password);
+
+        if (user != null)
+        {
+            // Guardar un token en sessionStorage
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "authToken", "token_" + user.Id);
+
+            // Si la validación es exitosa, redirigir a la página principal (o dashboard)
+            Navigation.NavigateTo("/events", forceLoad: true);
+        }
+        else
+        {
+            // Si la validación falla, mostrar el mensaje de error
+            loginFailed = true;
+        }
+    }
+}
